@@ -2,16 +2,23 @@
   text-align: center;
 }
 
+
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
+
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
+
+
 
 .App-header {
   background-color: #282c34;
@@ -24,9 +31,13 @@
   color: white;
 }
 
+
+
 .App-link {
   color: #61dafb;
 }
+
+
 
 @keyframes App-logo-spin {
   from {
@@ -35,4 +46,104 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.jumbotron{
+  margin:50px 200px 0 200px;
+  background-color: rgba(11, 212, 112, 0.671) !important;
+}
+
+
+
+
+.btn1{
+  border-radius: 10px;
+  border-color: blue;
+  position: fixed;
+  margin-left: 30px;
+}
+
+
+
+.inpt1{
+  border-radius: 10px;
+  margin-bottom: 80px;
+}
+
+
+.head1{
+  border-radius: 10px ;
+  text-align: center;
+  border-style:double;
+}
+
+
+
+.card {
+  height:500px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+ 
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 1.25rem !important ;
+  border-color: unset;
+  overflow: scroll;
+  background-color: aqua !important;
+}
+
+.card::-webkit-scrollbar {
+  display: none;
+  }
+  .card {
+  -ms-overflow-style: none; 
+  overflow: -moz-scrollbars-none;  
+  }
+
+
+.btn2{
+  float: right;
+  border-radius: 16px;
+  border-style: groove;
+}
+
+
+
+.chck1{
+  float: left;
+  margin: auto;
+  margin-top: 8px;
+
+}
+
+
+
+
+.bdr1{
+  border-style: groove;
+  margin-bottom: 5px;
+  border-radius: 18px;
+  background-color: cornflowerblue;
+}
+
+
+
+.inpt2{
+  margin-top:20px;
+  border-radius: 10px;
+  margin-bottom: 80px;
+}
+
+
+
+.btn3 {
+  float: right;
+  margin-top: 18px;
+  position: relative;
+  border-style: groove;
+  border-radius: 9px;
+  border-color: blue;
 }
