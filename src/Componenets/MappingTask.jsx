@@ -1,10 +1,6 @@
 import React from 'react';
 
-
-
 class MappingTask extends React.Component{
-
-
 
     checkAndUncheckTask = (val) => {
         let subTask = this.props.tasks_container

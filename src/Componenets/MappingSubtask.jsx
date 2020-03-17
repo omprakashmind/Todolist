@@ -1,6 +1,8 @@
 import React from 'react';
 
 class MappingSubtask extends React.Component{
+
+  
    
   checkAndUncheckSubTask = (val) => {
 
@@ -17,7 +19,6 @@ class MappingSubtask extends React.Component{
         break;
       }
     }
-
     this.setState({
       subtask_container: task
     })
@@ -50,7 +51,6 @@ class MappingSubtask extends React.Component{
     })
   }
 
-
          
     render(){
 
@@ -61,7 +61,9 @@ class MappingSubtask extends React.Component{
      return(
   
        <>
+      
         {STRC()}
+
        </>
       
         )

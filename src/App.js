@@ -98,7 +98,7 @@ class App extends React.Component {
 
             <div className="card">
 
-              <MappingSubtask values={this.state.values} subtask_container={this.state.subtask_container} checkAndUncheckSubTask={this.checkAndUncheckSubTask}  ></MappingSubtask>
+              <MappingSubtask values={this.state.values} subtask_container={this.state.subtask_container}  ></MappingSubtask>
 
             </div>
           </div>
