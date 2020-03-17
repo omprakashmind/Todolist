@@ -194,8 +194,7 @@ class App extends React.Component {
           <div className="col-sm-4 offset-sm-4">
             <div className="head1" >SUBTASK LIST :: {this.state.id}</div>
 
-            <input className="inpt2" type="text" name="sub_task" value={this.state.sub_task} placeholder="Enter the subtask" onChange={this.changeValue} required />
-            <button onClick={this.addSubTaskList} className="btn3"><i className="fa fa-plus-circle" aria-hidden="true"></i></button>
+            <Input value={this.state.sub_task} changeValue={this.changeValue} addTaskList={this.addSubTaskList} >sub_task</Input>
 
             <div className="card">
 
@@ -222,9 +221,11 @@ class App extends React.Component {
             <div className="col-sm-4">
               <h4 className="head1">TASK LIST </h4><br />
 
-               
-      <Input value={this.task_name} changeValue={this.changeValue} addTaskList={this.addTaskList} >task_name</Input>
 
+           
+         <Input value={this.task_name} changeValue={this.changeValue} addTaskList={this.addTaskList} >task_name</Input>
+
+         
 
 
               <div className="card">
