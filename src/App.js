@@ -145,19 +145,34 @@ class App extends React.Component {
     }
   }
 
+  deleteSubtask=(index)=>{
+    let deleteTAsk1=this.state.subtask_container
+    deleteTAsk1.subtask.splice(index,1);
+    this.setState({
+       subtask_container:deleteTAsk1
+    })
+
+  }
 
 
+  deleteTask=(index)=>{
+    let deleteTAsk1=this.state.tasks_container
+    deleteTAsk1.splice(index,1);
+    this.setState({
+        tasks_container:deleteTAsk1
+    })
+  }
 
 
   render() {
 
     let TSC = () => this.state.tasks_container && this.state.tasks_container.map((item, index) => {
-      return <div className="bdr1">{item.name}<button className="btn2" onClick={() => this.showtask(item)}><i className="fa fa-list" aria-hidden="true"></i></button><input type="checkbox" checked={item.status} className="chck1" onClick={() => this.checkAndUncheckTask(item.name)} /></div>
+      return <div className="bdr1">{item.name}<button className="btn2" onClick={() => this.showtask(item)}><i className="fa fa-list" aria-hidden="true"></i></button><input type="checkbox" checked={item.status} className="chck1" onClick={() => this.checkAndUncheckTask(item.name)} /><button className="btn2" onClick={()=>this.deleteTask(index)}><i className="fa fa-minus-square-o" aria-hidden="true" ></i></button></div>
     })
 
 
     let STRC=()=>this.state.values===true && Object.entries(this.state.subtask_container.subtask).map((item,index)=>{
-         return <div className="bdr1">{item[1].name}<input type="checkbox" checked={item[1].status} className="chck1" onClick={() => this.checkAndUncheckSubTask(item[1].name)} /><button className="btn2" ><i className="fa fa-minus-square-o" aria-hidden="true" ></i></button></div>
+         return <div className="bdr1">{item[1].name}<input type="checkbox" checked={item[1].status} className="chck1" onClick={() => this.checkAndUncheckSubTask(item[1].name)} /><button className="btn2" onClick={()=>this.deleteSubtask(index)}><i className="fa fa-minus-square-o" aria-hidden="true" ></i></button></div>
     })
 
    var showSUBTASKLIST=()=>{
@@ -184,9 +199,6 @@ class App extends React.Component {
 
 
 
-
-
-
     return (
       <div>
 
@@ -208,8 +220,6 @@ class App extends React.Component {
               </div>
 
             </div>
-
-
          
            
            {showSUBTASKLIST()}
@@ -219,7 +229,7 @@ class App extends React.Component {
           </div>
 
         </div>
-        <ListComponent/>
+      
 
       </div>
     )
