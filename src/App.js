@@ -1,12 +1,11 @@
 import React from 'react';
-
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
-import ListComponentTask from './Componenets/ListComponentTask';
 import Input from './Componenets/Input';
+import MappingSubtask from './Componenets/MappingSubtask';
+import MappingTask from './Componenets/MappingTask';
 
-// import SubTaskComponenet from './Componenets/SubTaskComponent';
 
 class App extends React.Component {
 
@@ -23,10 +22,7 @@ class App extends React.Component {
       error: '',
       values: false
     }
-
- 
   }
-
 
 
   changeValue = (event) => {
@@ -72,7 +68,6 @@ class App extends React.Component {
   }
 
 
-
   showtask = (item) => {
 
     let container1 = this.state.tasks_container
@@ -89,102 +84,7 @@ class App extends React.Component {
   }
 
 
-  checkAndUncheckSubTask = (val) => {
-
-    let task = this.state.subtask_container
-
-    for (let i = 0; i < task.length; i++) {
-      if (task[i].task === val) {
-        if (task[i].status === false) {
-          task[i].status = true
-        }
-        else {
-          task[i].status = false
-        }
-        break;
-      }
-    }
-
-    this.setState({
-      subtask_container: task
-    })
-  }
-
-
-  checkAndUncheckTask = (val) => {
-    let subTask = this.state.tasks_container
-    if (val === this.state.id) {
-      for (let i = 0; i < subTask.length; i++) {
-        if (subTask[i].name === val) {
-          if (subTask[i].status === false) {
-
-            for (let j = 0; j < subTask[i].subtask.length; j++) {
-              subTask[i].subtask[j].status = true
-            }
-            subTask[i].status = true
-
-          }
-          else {
-
-            for (let j = 0; j < subTask[i].subtask.length; j++) {
-              subTask[i].subtask[j].status = false
-            }
-            subTask[i].status = false
-          }
-
-          break;
-        }
-      }
-      this.setState({
-        tasks_container: subTask
-      })
-    }
-    else {
-      console.log("Please select the right list")
-    }
-  }
-
-  deleteSubtask = (index) => {
-    let deleteTAsk1 = this.state.subtask_container
-    deleteTAsk1.subtask.splice(index, 1);
-    this.setState({
-      subtask_container: deleteTAsk1
-    })
-
-
-  }
-
-
-  deleteTask = (index, item) => {
-    let deleteTAsk1 = this.state.tasks_container
-    if (item === this.state.id) {
-      deleteTAsk1.splice(index, 1);
-      this.setState({
-        tasks_container: deleteTAsk1,
-        id: '',
-        values: false,
-        subtask_container: {}
-      })
-    }
-    else {
-      deleteTAsk1.splice(index, 1);
-      this.setState({
-        tasks_container: deleteTAsk1
-      })
-    }
-  }
-
-
   render() {
-
-    let TSC = () => this.state.tasks_container && this.state.tasks_container.map((item, index) => {
-      return <div className="bdr1">{item.name}<button className="btn2" onClick={() => this.showtask(item)}><i className="fa fa-list" aria-hidden="true"></i></button><input type="checkbox" checked={item.status} className="chck1" onClick={() => this.checkAndUncheckTask(item.name)} /><button className="btn2" onClick={() => this.deleteTask(index, item.name)}><i className="fa fa-minus-square-o" aria-hidden="true" ></i></button></div>
-    })
-
-
-    let STRC = () => this.state.values === true && Object.entries(this.state.subtask_container.subtask).map((item, index) => {
-      return <div className="bdr1">{item[1].name}<input type="checkbox" checked={item[1].status} className="chck1" onClick={() => this.checkAndUncheckSubTask(item[1].name)} /><button className="btn2" onClick={() => this.deleteSubtask(index)}><i className="fa fa-minus-square-o" aria-hidden="true" ></i></button></div>
-    })
 
     var showSUBTASKLIST = () => {
 
@@ -198,15 +98,12 @@ class App extends React.Component {
 
             <div className="card">
 
-              {STRC()}
+              <MappingSubtask values={this.state.values} subtask_container={this.state.subtask_container} checkAndUncheckSubTask={this.checkAndUncheckSubTask}  ></MappingSubtask>
 
             </div>
-
           </div>
-
         )
     }
-
 
 
     return (
@@ -221,16 +118,13 @@ class App extends React.Component {
             <div className="col-sm-4">
               <h4 className="head1">TASK LIST </h4><br />
 
-
-           
-         <Input value={this.task_name} changeValue={this.changeValue} addTaskList={this.addTaskList} >task_name</Input>
-
-         
-
+              <Input value={this.task_name} changeValue={this.changeValue} addTaskList={this.addTaskList} >task_name</Input>
 
               <div className="card">
 
-                 { TSC()}
+
+                <MappingTask id={this.state.id} tasks_container={this.state.tasks_container} showtask={this.showtask} checkAndUncheckSubTask={this.checkAndUncheckTask}  ></MappingTask>
+
 
               </div>
 
@@ -241,7 +135,6 @@ class App extends React.Component {
           </div>
 
         </div>
-
 
       </div>
     )

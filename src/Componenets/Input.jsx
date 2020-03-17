@@ -3,7 +3,6 @@ import React from 'react';
 
 const Input =(props)=>{
 
-    
 
    return(
 
@@ -13,7 +12,6 @@ const Input =(props)=>{
     </>
 
    )
-
 
 }
 
