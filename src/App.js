@@ -1,11 +1,12 @@
-import React, { StrictMode } from 'react';
+import React from 'react';
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import ListComponentTask from './Componenets/ListComponentTask';
+import Input from './Componenets/Input';
 
-import SubTaskComponenet from './Componenets/SubTaskComponent';
+// import SubTaskComponenet from './Componenets/SubTaskComponent';
 
 class App extends React.Component {
 
@@ -22,6 +23,8 @@ class App extends React.Component {
       error: '',
       values: false
     }
+
+ 
   }
 
 
@@ -148,6 +151,7 @@ class App extends React.Component {
       subtask_container: deleteTAsk1
     })
 
+
   }
 
 
@@ -173,13 +177,9 @@ class App extends React.Component {
 
   render() {
 
-    // let TSC = () => this.state.tasks_container && this.state.tasks_container.map((item, index) => {
-    //   return <div className="bdr1">{item.name}<button className="btn2" onClick={() => this.showtask(item)}><i className="fa fa-list" aria-hidden="true"></i></button><input type="checkbox" checked={item.status} className="chck1" onClick={() => this.checkAndUncheckTask(item.name)} /><button className="btn2" onClick={() => this.deleteTask(index, item.name)}><i className="fa fa-minus-square-o" aria-hidden="true" ></i></button></div>
-    // })
-
-
-    // let TSC=<ListComponentTask showList={this.showList} tasks_container={this.tasks_container} checkAndUncheckSubTask={this.checkAndUncheckSubTask} deleteTask={this.deleteTask}></ListComponentTask>
-
+    let TSC = () => this.state.tasks_container && this.state.tasks_container.map((item, index) => {
+      return <div className="bdr1">{item.name}<button className="btn2" onClick={() => this.showtask(item)}><i className="fa fa-list" aria-hidden="true"></i></button><input type="checkbox" checked={item.status} className="chck1" onClick={() => this.checkAndUncheckTask(item.name)} /><button className="btn2" onClick={() => this.deleteTask(index, item.name)}><i className="fa fa-minus-square-o" aria-hidden="true" ></i></button></div>
+    })
 
 
     let STRC = () => this.state.values === true && Object.entries(this.state.subtask_container.subtask).map((item, index) => {
@@ -222,14 +222,14 @@ class App extends React.Component {
             <div className="col-sm-4">
               <h4 className="head1">TASK LIST </h4><br />
 
-              <input className="inpt1" type="text" name="task_name" value={this.state.task_name} placeholder="Enter the task" onChange={this.changeValue} required />
-              <button onClick={this.addTaskList} className="btn1"><i className="fa fa-plus-circle" aria-hidden="true"></i></button>
+               
+      <Input value={this.task_name} changeValue={this.changeValue} addTaskList={this.addTaskList} >task_name</Input>
+
+
 
               <div className="card">
-                
 
-              <ListComponentTask showList={this.showList} tasks_container={this.tasks_container} checkAndUncheckSubTask={this.checkAndUncheckSubTask} deleteTask={this.deleteTask}></ListComponentTask>
-
+                 { TSC()}
 
               </div>
 

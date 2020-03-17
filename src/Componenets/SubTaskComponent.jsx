@@ -1,21 +1,22 @@
 import React from 'react';
 
 
-const SubTaskComponent=()=>{
+class SubTaskComponent extends React.Component{
 
-       return(
-
-       <div>
-
-           
-       </div>
+       render(){
+          
+            return(
 
 
-       )
+                          <div>Hello</div>
+
+            )
+          
+
+       }
+
 
 }
-
-
 
 
 
