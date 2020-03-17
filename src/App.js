@@ -178,9 +178,7 @@ class App extends React.Component {
     // })
 
 
-    
-
-    let TSC=()=><ListComponentTask showList={this.showList} tasks_container={this.tasks_container} checkAndUncheckSubTask={this.checkAndUncheckSubTask} deleteTask={this.deleteTask}></ListComponentTask>
+    // let TSC=<ListComponentTask showList={this.showList} tasks_container={this.tasks_container} checkAndUncheckSubTask={this.checkAndUncheckSubTask} deleteTask={this.deleteTask}></ListComponentTask>
 
 
 
@@ -228,8 +226,9 @@ class App extends React.Component {
               <button onClick={this.addTaskList} className="btn1"><i className="fa fa-plus-circle" aria-hidden="true"></i></button>
 
               <div className="card">
+                
 
-               {  TSC()}
+              <ListComponentTask showList={this.showList} tasks_container={this.tasks_container} checkAndUncheckSubTask={this.checkAndUncheckSubTask} deleteTask={this.deleteTask}></ListComponentTask>
 
 
               </div>
