@@ -3,7 +3,9 @@ import React, { StrictMode } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
-import ListComponent from './Componenets/ListComponent'
+import ListComponentTask from './Componenets/ListComponentTask';
+
+import SubTaskComponenet from './Componenets/SubTaskComponent';
 
 class App extends React.Component {
 
@@ -32,7 +34,6 @@ class App extends React.Component {
   }
 
 
-
   addTaskList = (event) => {
 
     if (this.state.task_name === '') {
@@ -51,10 +52,8 @@ class App extends React.Component {
   }
 
 
-
-
   addSubTaskList = (event) => {
-    if (this.state.id != '' && this.state.sub_task!='') {
+    if (this.state.id != '' && this.state.sub_task != '') {
       let container1 = this.state.subtask_container
       let sub2 = this.state.sub_task
 
@@ -71,7 +70,6 @@ class App extends React.Component {
 
 
 
-
   showtask = (item) => {
 
     let container1 = this.state.tasks_container
@@ -80,14 +78,12 @@ class App extends React.Component {
         this.setState({
           subtask_container: container1[i],
           id: item.name,
-          values:true
+          values: true
         })
         break;
       }
     }
   }
-
-
 
 
   checkAndUncheckSubTask = (val) => {
@@ -126,7 +122,7 @@ class App extends React.Component {
 
           }
           else {
-            
+
             for (let j = 0; j < subTask[i].subtask.length; j++) {
               subTask[i].subtask[j].status = false
             }
@@ -145,57 +141,74 @@ class App extends React.Component {
     }
   }
 
-  deleteSubtask=(index)=>{
-    let deleteTAsk1=this.state.subtask_container
-    deleteTAsk1.subtask.splice(index,1);
+  deleteSubtask = (index) => {
+    let deleteTAsk1 = this.state.subtask_container
+    deleteTAsk1.subtask.splice(index, 1);
     this.setState({
-       subtask_container:deleteTAsk1
+      subtask_container: deleteTAsk1
     })
 
   }
 
 
-  deleteTask=(index)=>{
-    let deleteTAsk1=this.state.tasks_container
-    deleteTAsk1.splice(index,1);
-    this.setState({
-        tasks_container:deleteTAsk1
-    })
+  deleteTask = (index, item) => {
+    let deleteTAsk1 = this.state.tasks_container
+    if (item === this.state.id) {
+      deleteTAsk1.splice(index, 1);
+      this.setState({
+        tasks_container: deleteTAsk1,
+        id: '',
+        values: false,
+        subtask_container: {}
+      })
+    }
+    else {
+      deleteTAsk1.splice(index, 1);
+      this.setState({
+        tasks_container: deleteTAsk1
+      })
+    }
   }
 
 
   render() {
 
-    let TSC = () => this.state.tasks_container && this.state.tasks_container.map((item, index) => {
-      return <div className="bdr1">{item.name}<button className="btn2" onClick={() => this.showtask(item)}><i className="fa fa-list" aria-hidden="true"></i></button><input type="checkbox" checked={item.status} className="chck1" onClick={() => this.checkAndUncheckTask(item.name)} /><button className="btn2" onClick={()=>this.deleteTask(index)}><i className="fa fa-minus-square-o" aria-hidden="true" ></i></button></div>
+    // let TSC = () => this.state.tasks_container && this.state.tasks_container.map((item, index) => {
+    //   return <div className="bdr1">{item.name}<button className="btn2" onClick={() => this.showtask(item)}><i className="fa fa-list" aria-hidden="true"></i></button><input type="checkbox" checked={item.status} className="chck1" onClick={() => this.checkAndUncheckTask(item.name)} /><button className="btn2" onClick={() => this.deleteTask(index, item.name)}><i className="fa fa-minus-square-o" aria-hidden="true" ></i></button></div>
+    // })
+
+
+    
+
+    let TSC=()=><ListComponentTask showList={this.showList} tasks_container={this.tasks_container} checkAndUncheckSubTask={this.checkAndUncheckSubTask} deleteTask={this.deleteTask}></ListComponentTask>
+
+
+
+    let STRC = () => this.state.values === true && Object.entries(this.state.subtask_container.subtask).map((item, index) => {
+      return <div className="bdr1">{item[1].name}<input type="checkbox" checked={item[1].status} className="chck1" onClick={() => this.checkAndUncheckSubTask(item[1].name)} /><button className="btn2" onClick={() => this.deleteSubtask(index)}><i className="fa fa-minus-square-o" aria-hidden="true" ></i></button></div>
     })
 
+    var showSUBTASKLIST = () => {
 
-    let STRC=()=>this.state.values===true && Object.entries(this.state.subtask_container.subtask).map((item,index)=>{
-         return <div className="bdr1">{item[1].name}<input type="checkbox" checked={item[1].status} className="chck1" onClick={() => this.checkAndUncheckSubTask(item[1].name)} /><button className="btn2" onClick={()=>this.deleteSubtask(index)}><i className="fa fa-minus-square-o" aria-hidden="true" ></i></button></div>
-    })
+      if (this.state.values === true)
 
-   var showSUBTASKLIST=()=>{
+        return (
+          <div className="col-sm-4 offset-sm-4">
+            <div className="head1" >SUBTASK LIST :: {this.state.id}</div>
 
-     if(this.state.values===true)
+            <input className="inpt2" type="text" name="sub_task" value={this.state.sub_task} placeholder="Enter the subtask" onChange={this.changeValue} required />
+            <button onClick={this.addSubTaskList} className="btn3"><i className="fa fa-plus-circle" aria-hidden="true"></i></button>
 
-       return (
-        <div className="col-sm-4 offset-sm-4">
-        <div className="head1" >SUBTASK LIST :: {this.state.id}</div>
+            <div className="card">
 
-        <input className="inpt2" type="text" name="sub_task" value={this.state.sub_task} placeholder="Enter the subtask" onChange={this.changeValue} required />
-        <button onClick={this.addSubTaskList} className="btn3"><i className="fa fa-plus-circle" aria-hidden="true"></i></button>
+              {STRC()}
 
-        <div className="card">
+            </div>
 
-          {STRC()}
+          </div>
 
-        </div>
-
-      </div>
-
-       )
-   }
+        )
+    }
 
 
 
@@ -216,20 +229,19 @@ class App extends React.Component {
 
               <div className="card">
 
-                {TSC()}
+               {  TSC()}
+
+
               </div>
 
             </div>
-         
-           
-           {showSUBTASKLIST()}
-          
 
-         
+            {showSUBTASKLIST()}
+
           </div>
 
         </div>
-      
+
 
       </div>
     )
