@@ -10,9 +10,7 @@ import MappingTask from './Componenets/MappingTask';
 class App extends React.Component {
 
   constructor(props) {
-
     super(props)
-
     this.state = {
       tasks_container: [],
       subtask_container: {},

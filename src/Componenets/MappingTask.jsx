@@ -55,7 +55,6 @@ class MappingTask extends React.Component{
       }
 
 
-
 render(){
 
 
@@ -68,23 +67,13 @@ render(){
      return(
         
         <>
-
-
              {TSC()}
-
-
         </>
 
      )
-
 }
 
 }
-
-
-
-
-
 
 
 export default MappingTask
