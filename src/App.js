@@ -81,6 +81,15 @@ class App extends React.Component {
     }
   }
 
+  showValue=(event)=>{
+    this.setState({
+      task_name:'',
+      sub_task:''
+
+
+    })
+  }
+
 
   render() {
 
@@ -92,7 +101,7 @@ class App extends React.Component {
           <div className="col-sm-4 offset-sm-4">
             <div className="head1" >SUBTASK LIST :: {this.state.id}</div>
 
-            <Input value={this.state.sub_task} changeValue={this.changeValue} addTaskList={this.addSubTaskList} >sub_task</Input>
+            <Input value={this.state.sub_task} changeValue={this.changeValue} addTaskList={this.addSubTaskList} showValueCall={this.showValue}>sub_task</Input>
 
             <div className="card">
 
@@ -116,7 +125,7 @@ class App extends React.Component {
             <div className="col-sm-4">
               <h4 className="head1">TASK LIST </h4><br />
 
-              <Input value={this.task_name} changeValue={this.changeValue} addTaskList={this.addTaskList} >task_name</Input>
+              <Input value={this.task_name} changeValue={this.changeValue} addTaskList={this.addTaskList} showValueCall={this.showValue}>task_name</Input>
 
               <div className="card">
 
